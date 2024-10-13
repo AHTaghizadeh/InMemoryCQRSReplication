@@ -17,7 +17,6 @@ using Petabridge.Cmd.Remote;
 using static Akka.CQRS.Infrastructure.SqlDbHoconHelper;
 using Akka.CQRS.TradeProcessor.Actors;
 using Akka.CQRS.Infrastructure;
-using System.Net.Http;
 
 namespace Akka.CQRS.TradeProcessor.Service
 {
@@ -68,11 +67,6 @@ namespace Akka.CQRS.TradeProcessor.Service
 
                              var shardRegion = sharding.Start("orderBook", s => OrderBookActor.PropsFor(s), ClusterShardingSettings.Create(system),
                                  new StockShardMsgRouter());
-
-                             //////////////////////////////////////// http AHT start
-                             // HTTP Binding (assuming port 8080)
-                             
-                             //////////////////////////////////////// http AHT end
                          });
                      })
                     .AddPetabridgeCmd(cmd =>
